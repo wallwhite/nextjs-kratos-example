@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is an example of implementation server side authentication in Next.js application using Ory Kratos.
 
 ## Getting Started
 
-First, run the development server:
 
+### Docker 
+
+Docker is a software thar provides us virtualization to deliver software in packages called containers. 
+
+You can install docker by two ways:
+
+- Manually. Download and install the latest stable Docker for Mac from the [Docker website](https://docs.docker.com/desktop/install)
+- With package manager
+  ```bash
+  brew install docker docker-compose
+  ```
+
+Make sure all docker tools are installed on your Mac now:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+docker --version
+```
+The result should be similar to:
+```
+Docker version 24.0.5, build ced0996
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Node.js
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Make sure that runtime for Node.js is installed or [install](https://nodejs.org/en/download/) in your Mac now:
+Or you can install it with brew command(if you have already installed [brew](#-brew-))
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```bash
+brew install node
+```
 
-## Learn More
+### Running Ory stack
 
-To learn more about Next.js, take a look at the following resources:
+First, run the containers with Ory services: Kratos, Kratos Admin UI, Mailslurper.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+docker compose up --build --force-recreate
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Running next.js application
 
-## Deploy on Vercel
+Once you have your containers are up, you should run the next app:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Install dependencies:
+```bash
+pnpm install 
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Run the app:
+```bash
+pnpm dev
+```
+
+App will be opened on `4455` port.
+Open [http://localhost:4455](http://localhost:4455) with your browser to see the result.
