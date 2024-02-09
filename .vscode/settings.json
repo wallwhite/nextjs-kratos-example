@@ -1,0 +1,45 @@
+{
+  "cSpell.words": [
+    "argstable",
+    "backmerge",
+    "csrf",
+    "cssnano",
+    "csso",
+    "dont",
+    "formatjs",
+    "healthcheck",
+    "Hoverable",
+    "isready",
+    "kratos",
+    "KRATOS",
+    "localematcher",
+    "messageformat",
+    "mqpacker",
+    "mwkt",
+    "packagejson",
+    "pmpm",
+    "rabbitmq",
+    "sbdocs",
+    "setaf",
+    "spellix",
+    "splitcircular",
+    "stylelintrc",
+    "tanstack",
+    "traefik"
+  ],
+  "editor.formatOnSave": false,
+  "javascript.validate.enable": false,
+  "javascript.format.enable": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.stylelint": "explicit"
+  },
+  "stylelint.enable": true,
+  "stylelint.validate": [
+    "css",
+    "scss"
+  ],
+  "eslint.debug": true,
+  "eslint.onIgnoredFiles": "warn",
+  "editor.tabSize": 2,
+}

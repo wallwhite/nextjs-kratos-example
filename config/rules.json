@@ -1,0 +1,117 @@
+[
+  {
+    "id": "allow-anonymous-with-header-mutator",
+    "version": "v0.40.6",
+    "upstream": {
+      "url": "https://httpbin.org/anything/header"
+    },
+    "match": {
+      "url": "http://localhost:4455/anything/header",
+      "methods": [
+        "GET"
+      ]
+    },
+    "authenticators": [
+      {
+        "handler": "anonymous"
+      }
+    ],
+    "authorizer": {
+      "handler": "allow"
+    },
+    "mutators": [
+      {
+        "handler": "header",
+        "config": {
+          "headers": {
+            "X-User": "{{ print .Subject }}"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "deny-anonymous",
+    "version": "v0.40.6",
+    "upstream": {
+      "url": "https://httpbin.org/anything/deny"
+    },
+    "match": {
+      "url": "http://localhost:4455/anything/deny",
+      "methods": [
+        "GET"
+      ]
+    },
+    "authenticators": [
+      {
+        "handler": "anonymous"
+      }
+    ],
+    "authorizer": {
+      "handler": "deny"
+    },
+    "mutators": [
+      {
+        "handler": "noop"
+      }
+    ],
+    "errors": [
+      {
+        "handler": "json",
+        "config": {
+          "when": [
+            {
+              "request": {
+                "header": {
+                  "accept": ["application/json"]
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "handler": "redirect",
+        "config": {
+          "when": [
+            {
+              "request": {
+                "header": {
+                  "accept": ["text/*"]
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "some-rule-id",
+    "upstream": {
+      "url": "http://example.com"
+    },
+    "match": {
+      "url": "http://localhost:4455/some/rule",
+      "methods": ["GET"]
+    },
+    "authenticators": [
+      {
+        "handler": "jwt"
+      }
+    ],
+    "authorizer": {
+      "handler": "allow"
+    },
+    "mutators": [
+      {
+        "handler": "header",
+        "config": {
+          "headers": {
+            "X-User": "{{ print .Subject }}"
+          }
+        }
+      }
+    ]
+  }
+]

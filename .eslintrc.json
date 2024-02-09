@@ -1,3 +1,104 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": "@wallwhite/eslint-config-react-ts",
+  "ignorePatterns": [
+    ".eslintrc.js",
+    "**/*.e2e*.ts",
+    "**/spec/**"
+  ],
+  "rules": {
+    "react/react-in-jsx-scope": 0,
+    "react/jsx-indent": [2, 2],
+    "react/jsx-indent-props": [2, 2],
+    "prettier/prettier": [
+      "error",
+      {
+          "singleQuote": true,
+          "tabWidth": 2,
+          "printWidth": 120,
+          "trailingComma": "all"
+      }
+    ],
+    "import/order": [2, {
+      "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+      },
+      "pathGroups": [
+          {
+            "pattern": "react",
+            "group": "builtin",
+            "position": "before"
+          },
+          {
+            "pattern": "react*",
+            "group": "builtin"
+          },
+          {
+            "pattern": "next",
+            "group": "builtin",
+            "position": "after"
+          },
+          {
+            "pattern": "next/**",
+            "group": "builtin",
+            "position": "after"
+          },
+          {
+            "pattern": "next-auth",
+            "group": "builtin",
+            "position": "after"
+          },
+          {
+            "pattern": "next-auth/**",
+            "group": "builtin",
+            "position": "after"
+          },
+          {
+            "pattern": "@apollo",
+            "group": "builtin",
+            "position": "after"
+          },
+          {
+            "pattern": "@/lib/**",
+            "group": "internal",
+            "position": "before"
+          },
+          {
+            "pattern": "@/apollo/**",
+            "group": "internal",
+            "position": "before"
+          },
+          {
+            "pattern": "@/server/**",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "@/modules/**",
+            "group": "parent",
+            "position": "before"
+          },
+          {
+            "pattern": "*.sass",
+            "group": "object",
+            "position": "after"
+          },
+          {
+            "pattern": "@/styles/**",
+            "group": "object",
+            "position": "after"
+          }
+      ],
+      "pathGroupsExcludedImportTypes": ["react", "@packages"],
+      "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index",
+          "object"
+      ]
+    }]
+  }
 }

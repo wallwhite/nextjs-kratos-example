@@ -1,0 +1,70 @@
+serve:
+  proxy:
+    port: 4455 # run the proxy at port 4455
+  api:
+    port: 4456 # run the api at port 4456
+
+access_rules:
+  repositories:
+    - file:///etc/config/rules.json
+
+errors:
+  fallback:
+    - json
+  handlers:
+    json:
+      enabled: true
+      config:
+        verbose: true
+    redirect:
+      enabled: true
+      config:
+        to: https://www.ory.sh/docs
+
+mutators:
+  header:
+    enabled: true
+    config:
+      headers:
+        X-User: "{{ print .Subject }}"
+        # You could add some other headers, for example with data from the
+        # session.
+  noop:
+    enabled: true
+  id_token:
+    enabled: true
+    config:
+      issuer_url: http://localhost:4455/
+      jwks_url: file:///jwks.json
+
+authorizers:
+  allow:
+    enabled: true
+  deny:
+    enabled: true
+
+authenticators:
+#  jwt:
+#    enabled: true
+#    config:
+#      # Список URL де можна валідувати токени
+#      jwks_urls:
+#        - https://www.jwt.io/.well-known/jwks.json
+#      trusted_issuers:
+#        - https://my-trusted-issuer.com
+#      # Звітки читати jwt token
+#      token_from:
+#        header: Authorization
+#        query_parameter: token
+#      # Умови, які повинні бути виконані, щоб токен був вважаний дійсним.
+#      only:
+#        - "issuer=my-trusted-issuer.com"
+##       Список областей доступу (scopes), які потрібні для токена.
+#      required_scope:
+#        - my-required-scope
+##       exact означає, що токен повинен мати точні області доступу, які вказані в required_scope
+#      scope_strategy: exact
+  anonymous:
+    enabled: true
+    config:
+      subject: guest
