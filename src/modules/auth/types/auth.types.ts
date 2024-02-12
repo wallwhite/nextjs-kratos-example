@@ -5,7 +5,7 @@ export interface AuthSearchParams {
   returnTo: string;
 }
 
-export interface RegistrationFormState {
+export interface AuthFormState {
   message: string | null;
   isSuccessful?: boolean;
 }

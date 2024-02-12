@@ -6,3 +6,10 @@ export enum RegistrationFormField {
   LastName = 'last',
   Password = 'password',
 }
+
+export enum LoginFormField {
+  FlowId = 'flow',
+  CsrfToken = 'csrf_token',
+  Email = 'email',
+  Password = 'password',
+}

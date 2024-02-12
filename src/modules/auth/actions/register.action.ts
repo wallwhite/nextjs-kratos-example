@@ -5,11 +5,11 @@ import { cookies } from 'next/headers';
 import { updateRegistrationFlow } from '../api/operations/update-registration-flow';
 import { RegistrationFormField } from '../constants';
 import { RegistrationFormSchema } from '../schema/registration.schema';
-import { RegistrationFormState } from '../types/auth.types';
+import { AuthFormState } from '../types/auth.types';
 import { parseCsrfCookie } from '../utils/csrf';
 import { parseSessionCookie } from '../utils/session';
 
-export const registerAction = async (_: RegistrationFormState, formData: FormData): Promise<RegistrationFormState> => {
+export const registerAction = async (_: AuthFormState, formData: FormData): Promise<AuthFormState> => {
   const parseFormData = RegistrationFormSchema.safeParse({
     [RegistrationFormField.FirstName]: formData.get(RegistrationFormField.FirstName),
     [RegistrationFormField.LastName]: formData.get(RegistrationFormField.LastName),

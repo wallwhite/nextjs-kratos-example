@@ -8,7 +8,7 @@ import { Cookie } from 'set-cookie-parser';
 import { registerAction } from '../actions/register.action';
 import { setAuthCookies } from '../actions/set-auth-cookies.action';
 import { RegistrationFormField } from '../constants';
-import { RegistrationFormState } from '../types/auth.types';
+import { AuthFormState } from '../types/auth.types';
 import { getCsrfUiNodeValue } from '../utils/csrf';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
@@ -16,7 +16,7 @@ import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 
-const initialState: RegistrationFormState = {
+const initialState: AuthFormState = {
   message: null,
 };
 
@@ -26,7 +26,7 @@ interface RegistrationProps {
 }
 
 export const Registration: FC<RegistrationProps> = ({ flow, csrf }) => {
-  const [state, formAction] = useFormState<RegistrationFormState, FormData>(registerAction, initialState);
+  const [state, formAction] = useFormState<AuthFormState, FormData>(registerAction, initialState);
 
   const router = useRouter();
   const csrfNodeValue = getCsrfUiNodeValue(flow.ui);
